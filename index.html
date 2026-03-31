@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ronak's Couture — Timeless Indian Couture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --olive: #69734E;
+  --olive-light: #7D8C5E;
+  --olive-dark: #4A5238;
+  --olive-deep: #3A3118;
+  --antique-gold: #CCBA68;
+  --gold-bright: #E0C979;
+  --gold-muted: #8D7B57;
+  --amber: #804018;
+  --amber-light: #A0642A;
+  --amber-glow: #F6CB9E;
+  --crimson: #B1181B;
+  --vermillion: #C83828;
+  --cream: #F0E6D0;
+  --ivory: #FAF5EA;
+  --warm-white: #FDF8EE;
+  --night: #0B1013;
+  --charcoal: #1E1C14;
+  --graphite: #3A3520;
+  --slate: #6B6348;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--ivory);
+  color: var(--charcoal);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 60px; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes floatArch {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+  50% { transform: translate(-50%, -50%) scale(1.03); opacity: 0.25; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══ NAVIGATION ═══ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px;
+  height: 72px;
+  background: rgba(11, 16, 19, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(204, 186, 104, 0.08);
+  transition: all 0.4s ease;
+}
+.nav.scrolled {
+  height: 60px;
+  background: rgba(11, 16, 19, 0.97);
+}
+.nav-brand {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  padding: 4px 0;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--antique-gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-links a:hover::after { width: 100%; }
+
+/* Mobile hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+}
+.nav-toggle span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--antique-gold);
+  transition: all 0.3s ease;
+}
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: var(--night);
+  position: relative;
+  overflow: hidden;
+  padding: 120px 24px 80px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(106,118,80,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 70% 80%, rgba(128,64,24,0.08) 0%, transparent 60%);
+}
+/* Mughal arch background motif */
+.hero-arch {
+  width: 340px;
+  height: 420px;
+  border: 1px solid rgba(204,186,104,0.12);
+  border-radius: 170px 170px 0 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: floatArch 8s ease-in-out infinite;
+}
+.hero-arch::after {
+  content: '';
+  width: 270px;
+  height: 340px;
+  border: 1px solid rgba(204,186,104,0.08);
+  border-radius: 135px 135px 0 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hero-arch-outer {
+  width: 420px;
+  height: 510px;
+  border: 1px dashed rgba(204,186,104,0.06);
+  border-radius: 210px 210px 0 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Decorative corner elements */
+.hero-corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-color: rgba(204,186,104,0.1);
+  border-style: solid;
+  pointer-events: none;
+}
+.hero-corner.tl { top: 40px; left: 40px; border-width: 1px 0 0 1px; }
+.hero-corner.tr { top: 40px; right: 40px; border-width: 1px 1px 0 0; }
+.hero-corner.bl { bottom: 40px; left: 40px; border-width: 0 0 1px 1px; }
+.hero-corner.br { bottom: 40px; right: 40px; border-width: 0 1px 1px 0; }
+
+.hero-ornament {
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(204,186,104,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1s ease 0.2s both;
+}
+.hero-ornament::before {
+  content: '✦';
+  color: var(--antique-gold);
+  font-size: 16px;
+}
+.hero-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+.hero-brand {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 8vw, 90px);
+  color: var(--cream);
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.8s ease 0.6s both;
+}
+.hero-tagline {
+  font-family: 'EB Garamond', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(17px, 2.5vw, 24px);
+  color: var(--antique-gold);
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+  opacity: 0.85;
+  animation: fadeUp 0.8s ease 0.8s both;
+}
+.hero-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.8s ease 1s both;
+}
+.hero-cta-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 52px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.8s ease 1.2s both;
+}
+.hero-cta {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.hero-cta.primary {
+  background: var(--antique-gold);
+  color: var(--night);
+  border: 1px solid var(--antique-gold);
+}
+.hero-cta.primary:hover {
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(204,186,104,0.2);
+}
+.hero-cta.secondary {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(240,230,208,0.25);
+}
+.hero-cta.secondary:hover {
+  border-color: var(--antique-gold);
+  color: var(--antique-gold);
+  transform: translateY(-2px);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  animation: fadeIn 1s ease 1.5s both;
+}
+.hero-scroll span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(204,186,104,0.4);
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(204,186,104,0.4), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ═══ SECTION DIVIDER BANDS ═══ */
+.divider-band {
+  background: var(--olive-dark);
+  padding: 72px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.divider-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(106,118,80,0.15) 0%, transparent 70%);
+}
+.divider-band .quote {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--cream);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+.divider-band .attrib {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══ PAGE SECTIONS ═══ */
+.page-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 48px;
+  width: 100%;
+}
+.section-number {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--olive);
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  display: block;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4.5vw, 52px);
+  color: var(--charcoal);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.section-title.light { color: var(--cream); }
+.section-rule {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--olive), var(--antique-gold));
+  margin: 20px 0 32px;
+}
+.section-rule.light {
+  background: linear-gradient(90deg, var(--antique-gold), transparent);
+}
+.section-intro {
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--graphite);
+  max-width: 620px;
+  line-height: 1.85;
+}
+.section-intro.light {
+  color: rgba(240,230,208,0.7);
+}
+
+/* ═══ HERITAGE SECTION ═══ */
+.heritage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-top: 64px;
+  background: rgba(106,118,80,0.1);
+}
+.heritage-card {
+  padding: 48px 36px;
+  background: var(--ivory);
+  position: relative;
+  transition: transform 0.4s ease;
+}
+.heritage-card:hover {
+  transform: translateY(-4px);
+}
+.heritage-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--olive), transparent);
+}
+.heritage-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
+}
+.heritage-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--charcoal);
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+.heritage-card p {
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--slate);
+  line-height: 1.8;
+}
+
+.heritage-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 64px;
+  padding: 40px 0;
+}
+.timeline-item {
+  text-align: center;
+}
+.timeline-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--olive);
+  line-height: 1;
+}
+.timeline-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-top: 8px;
+}
+.timeline-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--antique-gold);
+  opacity: 0.4;
+}
+
+/* ═══ COLLECTIONS SECTION ═══ */
+.collections-section {
+  background: var(--night);
+}
+.collections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 60px;
+}
+.collection-card {
+  position: relative;
+  padding: 56px 44px;
+  border: 1px solid rgba(204,186,104,0.12);
+  overflow: hidden;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.collection-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.5s ease;
+}
+.collection-card.riwayat::before {
+  background: linear-gradient(160deg, rgba(74,82,56,0.4) 0%, rgba(11,16,19,0.95) 60%);
+}
+.collection-card.tarz::before {
+  background: linear-gradient(160deg, rgba(128,64,24,0.3) 0%, rgba(11,16,19,0.95) 60%);
+}
+.collection-card:hover {
+  border-color: rgba(204,186,104,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* Arch motif inside collection cards */
+.collection-arch {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 120px;
+  height: 150px;
+  border: 1px solid rgba(204,186,104,0.08);
+  border-radius: 60px 60px 0 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+.collection-card:hover .collection-arch {
+  border-color: rgba(204,186,104,0.15);
+}
+
+.collection-hindi {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--antique-gold);
+  opacity: 0.5;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+.collection-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.collection-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+.collection-desc {
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  color: rgba(240,230,208,0.6);
+  line-height: 1.8;
+  max-width: 380px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 28px;
+}
+.collection-cta {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: gap 0.3s ease;
+}
+.collection-cta:hover { gap: 16px; }
+.collection-cta::after {
+  content: '→';
+  transition: transform 0.3s ease;
+}
+
+/* ═══ SILHOUETTES SECTION ═══ */
+.silhouettes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+}
+.silhouette-card {
+  position: relative;
+  padding: 44px 28px 36px;
+  background: var(--warm-white);
+  border: 1px solid rgba(106,118,80,0.1);
+  text-align: center;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.silhouette-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--olive), var(--antique-gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+.silhouette-card:hover::before { transform: scaleX(1); }
+.silhouette-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(58,49,24,0.1);
+  border-color: rgba(106,118,80,0.2);
+}
+
+.silhouette-icon-wrap {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.silhouette-icon-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(106,118,80,0.25);
+}
+.silhouette-icon {
+  font-size: 32px;
+}
+
+.silhouette-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--charcoal);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.silhouette-hindi {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold-muted);
+  margin-bottom: 16px;
+}
+.silhouette-card p {
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  color: var(--slate);
+  line-height: 1.75;
+}
+
+/* ═══ CRAFTSMANSHIP SECTION ═══ */
+.craft-section {
+  background: var(--charcoal);
+}
+.craft-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 60px;
+}
+.craft-column h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--antique-gold);
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(204,186,104,0.15);
+}
+.craft-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-left: 2px solid rgba(204,186,104,0.15);
+  transition: border-color 0.3s ease;
+}
+.craft-item:hover {
+  border-left-color: var(--antique-gold);
+}
+.craft-item h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.craft-item p {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  color: rgba(240,230,208,0.55);
+  line-height: 1.7;
+}
+
+/* ═══ CUSTOMIZATION SECTION ═══ */
+.custom-section {
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.custom-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 500px;
+  border: 1px dashed rgba(106,118,80,0.08);
+  border-radius: 200px 200px 0 0;
+  pointer-events: none;
+}
+
+.custom-process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+  background: rgba(106,118,80,0.12);
+}
+.process-step {
+  background: var(--ivory);
+  padding: 40px 28px;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+}
+.process-step:hover {
+  background: var(--warm-white);
+}
+.process-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--olive);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.process-step h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+}
+.process-step p {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.7;
+}
+
+.custom-highlight {
+  margin-top: 60px;
+  padding: 52px 48px;
+  background: var(--night);
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.custom-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 40% 80% at 90% 50%, rgba(204,186,104,0.06) 0%, transparent 70%);
+}
+.custom-highlight-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+.custom-highlight-text h3 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.custom-highlight-text p {
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  color: rgba(240,230,208,0.6);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+.custom-price {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px;
+  border: 1px solid rgba(204,186,104,0.2);
+  min-width: 260px;
+}
+.custom-price-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  margin-bottom: 12px;
+}
+.custom-price-amount {
+  font-family: 'Cinzel', serif;
+  font-size: 42px;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1;
+}
+.custom-price-amount span {
+  font-size: 22px;
+  opacity: 0.7;
+}
+.custom-price-note {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(240,230,208,0.5);
+  margin-top: 12px;
+}
+
+.custom-cta-btn {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  background: var(--antique-gold);
+  color: var(--night);
+  text-decoration: none;
+  transition: all 0.4s ease;
+  border: 1px solid var(--antique-gold);
+}
+.custom-cta-btn:hover {
+  background: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(204,186,104,0.2);
+}
+
+/* ═══ CONTACT SECTION ═══ */
+.contact-section {
+  background: var(--night);
+  position: relative;
+  overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(106,118,80,0.08) 0%, transparent 70%);
+}
+.contact-inner {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.contact-arch {
+  width: 200px;
+  height: 250px;
+  border: 1px solid rgba(204,186,104,0.1);
+  border-radius: 100px 100px 0 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.contact-ornament {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 14px;
+  color: var(--antique-gold);
+  opacity: 0.3;
+  margin-bottom: 24px;
+  letter-spacing: 8px;
+}
+.contact-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.contact-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(240,230,208,0.5);
+  margin-bottom: 48px;
+}
+.contact-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 48px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  border: none;
+}
+.contact-whatsapp:hover {
+  background: #20BD5A;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(37,211,102,0.25);
+}
+.contact-whatsapp svg {
+  width: 22px;
+  height: 22px;
+  fill: white;
+}
+.contact-info {
+  margin-top: 40px;
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  color: rgba(240,230,208,0.4);
+  line-height: 2;
+}
+.contact-info a {
+  color: var(--antique-gold);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.contact-info a:hover { opacity: 0.7; }
+
+/* ═══ FOOTER ═══ */
+.footer {
+  background: var(--charcoal);
+  padding: 48px 40px;
+  text-align: center;
+  border-top: 1px solid rgba(204,186,104,0.08);
+}
+.footer-brand {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.footer-tagline {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold-muted);
+  margin-bottom: 24px;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.footer-links a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.footer-links a:hover { opacity: 1; }
+.footer-legal {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  color: var(--slate);
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .silhouettes-grid { grid-template-columns: 1fr 1fr; }
+  .heritage-grid { grid-template-columns: 1fr 1fr; }
+  .craft-grid { grid-template-columns: 1fr; }
+  .custom-process { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 0 24px; }
+  .nav-links { 
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(11,16,19,0.97);
+    padding: 24px;
+    gap: 16px;
+    border-bottom: 1px solid rgba(204,186,104,0.08);
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
+
+  .section-inner { padding: 80px 24px; }
+  .hero { padding: 100px 24px 80px; }
+  .hero-cta-group { flex-direction: column; align-items: center; }
+
+  .collections-grid { grid-template-columns: 1fr; }
+  .silhouettes-grid { grid-template-columns: 1fr; }
+  .heritage-grid { grid-template-columns: 1fr; }
+  .custom-process { grid-template-columns: 1fr; }
+  
+  .custom-highlight {
+    flex-direction: column;
+    padding: 36px 24px;
+    gap: 32px;
+  }
+  .custom-price { min-width: unset; width: 100%; }
+
+  .heritage-timeline {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .timeline-dot { display: none; }
+
+  .hero-arch { width: 240px; height: 300px; border-radius: 120px 120px 0 0; }
+  .hero-arch::after { width: 180px; height: 230px; border-radius: 90px 90px 0 0; }
+  .hero-arch-outer { width: 300px; height: 370px; border-radius: 150px 150px 0 0; }
+  .hero-corner { display: none; }
+
+  .collection-card { min-height: 340px; padding: 40px 28px; }
+  
+  .footer-links { flex-wrap: wrap; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .nav-brand { font-size: 15px; }
+  .silhouette-card { padding: 32px 20px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-brand">Ronak's Couture</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#heritage" onclick="closeNav()">Heritage</a></li>
+    <li><a href="#collections" onclick="closeNav()">Collections</a></li>
+    <li><a href="#silhouettes" onclick="closeNav()">Silhouettes</a></li>
+    <li><a href="#craftsmanship" onclick="closeNav()">Craftsmanship</a></li>
+    <li><a href="#customisation" onclick="closeNav()">Customisation</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-arch"></div>
+  <div class="hero-arch-outer"></div>
+  <div class="hero-corner tl"></div>
+  <div class="hero-corner tr"></div>
+  <div class="hero-corner bl"></div>
+  <div class="hero-corner br"></div>
+
+  <div class="hero-ornament"></div>
+  <div class="hero-label">Est. Since 25+ Years</div>
+  <h1 class="hero-brand">Ronak's Couture</h1>
+  <p class="hero-tagline">Timeless Indian couture reimagined for the modern muse</p>
+  <p class="hero-sub">Surat, India</p>
+  
+  <div class="hero-cta-group">
+    <a href="#collections" class="hero-cta primary">Explore Collections</a>
+    <a href="#contact" class="hero-cta secondary">Book a Consultation</a>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ HERITAGE ═══ -->
+<section class="page-section" id="heritage">
+  <div class="section-inner">
+    <div class="animate-on-scroll">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Our Heritage</h2>
+      <div class="section-rule"></div>
+      <p class="section-intro">
+        For over twenty-five years, Ronak's Couture has woven together the richness of Gujarati textile heritage with couture-level artistry. What began as a deep reverence for handcrafted Indian textiles has grown into a legacy — one that dresses women across India, Namibia, Nairobi, and beyond in outfits that are not merely worn, but inherited.
+      </p>
+    </div>
+
+    <div class="heritage-grid animate-on-scroll">
+      <div class="heritage-card">
+        <span class="heritage-icon">🪡</span>
+        <h3>Rooted in Craft</h3>
+        <p>Every piece begins at the loom. We work directly with master weavers and artisans across Gujarat and Varanasi to source heritage textiles — Patola, Banarasi, Bandhani — ensuring every thread carries the weight of tradition.</p>
+      </div>
+      <div class="heritage-card">
+        <span class="heritage-icon">✦</span>
+        <h3>Design as Legacy</h3>
+        <p>Our design philosophy is rooted in West Indian silhouettes reimagined for the modern woman. Each outfit is conceived as a statement piece — a future heirloom that transcends seasons and trends.</p>
+      </div>
+      <div class="heritage-card">
+        <span class="heritage-icon">🌍</span>
+        <h3>Global Reach</h3>
+        <p>From Surat to Windhoek, from Nairobi to New Delhi — our clientele spans continents. We understand the diaspora bride, the destination celebration, and the woman who demands couture without compromise.</p>
+      </div>
+    </div>
+
+    <div class="heritage-timeline animate-on-scroll">
+      <div class="timeline-item">
+        <div class="timeline-number">25+</div>
+        <div class="timeline-label">Years of Craft</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-item">
+        <div class="timeline-number">5</div>
+        <div class="timeline-label">Continents Served</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-item">
+        <div class="timeline-number">100%</div>
+        <div class="timeline-label">Pure Textiles</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-item">
+        <div class="timeline-number">∞</div>
+        <div class="timeline-label">Heirloom Promise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DIVIDER ═══ -->
+<div class="divider-band">
+  <p class="quote">"A garment crafted with soul becomes an heirloom. We don't follow trends — we create legacies."</p>
+  <p class="attrib">— Ronak's Couture</p>
+</div>
+
+<!-- ═══ COLLECTIONS ═══ -->
+<section class="page-section collections-section" id="collections">
+  <div class="section-inner">
+    <div class="animate-on-scroll">
+      <span class="section-number" style="color: var(--antique-gold); opacity: 0.6;">02</span>
+      <h2 class="section-title light">Our Collections</h2>
+      <div class="section-rule light"></div>
+      <p class="section-intro light">
+        Two distinct worlds, one shared soul. Each collection speaks to a different facet of the modern Indian woman — from grand celebrations to everyday elegance, always rooted in pure craftsmanship.
+      </p>
+    </div>
+
+    <div class="collections-grid animate-on-scroll">
+      <!-- RIWAYAT -->
+      <div class="collection-card riwayat">
+        <div class="collection-arch"></div>
+        <div class="collection-hindi">रिवायत</div>
+        <h3 class="collection-name">Riwayat</h3>
+        <div class="collection-subtitle">Heirloom Couture</div>
+        <p class="collection-desc">
+          The tradition of grandeur. Riwayat is our ultra-luxury line — heirloom fabrics, masterful zardozi and aari work, and lehengas that become timeless family treasures. For the woman whose outfit tells a story across generations.
+        </p>
+        <a href="#contact" class="collection-cta">View Lookbook</a>
+      </div>
+
+      <!-- TARZ -->
+      <div class="collection-card tarz">
+        <div class="collection-arch"></div>
+        <div class="collection-hindi">तर्ज़</div>
+        <h3 class="collection-name">Tarz</h3>
+        <div class="collection-subtitle">Everyday Luxury</div>
+        <p class="collection-desc">
+          Your signature style, redefined. Tarz brings the same commitment to 100% pure materials and impeccable craftsmanship into lighter suits and silhouettes designed for more frequent wear. Zero compromise, effortless elegance.
+        </p>
+        <a href="#contact" class="collection-cta">View Lookbook</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SILHOUETTES ═══ -->
+<section class="page-section" id="silhouettes">
+  <div class="section-inner">
+    <div class="animate-on-scroll">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Silhouettes We Master</h2>
+      <div class="section-rule"></div>
+      <p class="section-intro">
+        Every silhouette in our atelier is a study in form and heritage — shaped by Gujarati and West Indian design traditions, finished with the precision of modern couture.
+      </p>
+    </div>
+
+    <div class="silhouettes-grid animate-on-scroll">
+      <div class="silhouette-card">
+        <div class="silhouette-icon-wrap">
+          <span class="silhouette-icon">👗</span>
+        </div>
+        <h3>Lehengas</h3>
+        <div class="silhouette-hindi">लहेंगा</div>
+        <p>The crown jewel of Indian bridalwear. Our lehengas feature hand-embroidered panels on heritage fabrics — each one a canvas of zardozi, mirror work, and pure silk that transforms into a family heirloom.</p>
+      </div>
+
+      <div class="silhouette-card">
+        <div class="silhouette-icon-wrap">
+          <span class="silhouette-icon">🧣</span>
+        </div>
+        <h3>Sarees</h3>
+        <div class="silhouette-hindi">साड़ी</div>
+        <p>The eternal drape, elevated. From handwoven Patola and Banarasi to contemporary concept sarees, each piece honours India's most iconic garment with meticulous attention to fabric, fall, and finish.</p>
+      </div>
+
+      <div class="silhouette-card">
+        <div class="silhouette-icon-wrap">
+          <span class="silhouette-icon">✂️</span>
+        </div>
+        <h3>Suits</h3>
+        <div class="silhouette-hindi">सूट</div>
+        <p>Refined Indian suits that bridge everyday grace and festive grandeur. Crafted in pure Kota, silk, and Ikat fabrics with aari detailing — designed for the woman who elevates every occasion.</p>
+      </div>
+
+      <div class="silhouette-card">
+        <div class="silhouette-icon-wrap">
+          <span class="silhouette-icon">🦋</span>
+        </div>
+        <h3>Kaftans</h3>
+        <div class="silhouette-hindi">काफ्तान</div>
+        <p>Where comfort meets couture. Our kaftans drape effortlessly in luxe silks and bandhani, adorned with statement embroidery — the perfect silhouette for intimate celebrations and destination wear.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DIVIDER ═══ -->
+<div class="divider-band" style="background: var(--amber);">
+  <p class="quote">"We don't create outfits. We create the feeling of being extraordinary."</p>
+  <p class="attrib">— The Atelier</p>
+</div>
+
+<!-- ═══ CRAFTSMANSHIP ═══ -->
+<section class="page-section craft-section" id="craftsmanship">
+  <div class="section-inner">
+    <div class="animate-on-scroll">
+      <span class="section-number" style="color: var(--antique-gold); opacity: 0.6;">04</span>
+      <h2 class="section-title light">The Art of Our Hands</h2>
+      <div class="section-rule light"></div>
+      <p class="section-intro light">
+        Every Ronak's Couture piece is a convergence of India's finest heritage textiles and master-level embellishment — materials and techniques that cannot be authentically replicated.
+      </p>
+    </div>
+
+    <div class="craft-grid animate-on-scroll">
+      <div class="craft-column">
+        <h3>Heritage Textiles</h3>
+        <div class="craft-item">
+          <div>
+            <h4>Patola</h4>
+            <p>Double-ikat silk woven in Patan, Gujarat — one of the rarest textile arts in the world. Each saree can take six months to complete on the loom.</p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div>
+            <h4>Banarasi</h4>
+            <p>Handwoven brocade from the looms of Varanasi, featuring gold and silver zari threads. The fabric of royal Indian weddings for centuries.</p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div>
+            <h4>Bandhani</h4>
+            <p>The ancient Gujarati art of tie-dye, where thousands of tiny knots are hand-tied to create intricate patterns before dyeing — each dot placed with precision.</p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div>
+            <h4>Ikat &amp; Kota</h4>
+            <p>Resist-dyed weaves from Rajasthan and Gujarat. Lightweight yet rich in texture — ideal for suits and flowing silhouettes that carry the warmth of handcraft.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="craft-column">
+        <h3>Master Workmanship</h3>
+        <div class="craft-item">
+          <div>
+            <h4>Zardozi</h4>
+            <p>Mughal-era embroidery using gold and silver metallic threads on silk. Our artisans create raised, sculptural motifs that catch light like jewels on fabric.</p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div>
+            <h4>Aari Work</h4>
+            <p>Chain-stitch embroidery using a hooked needle, producing intricate patterns of extraordinary fineness. The foundation of our signature detailing on suits and lehengas.</p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div>
+            <h4>Mirror Work</h4>
+            <p>Hand-stitched reflective embellishments rooted in Kutch, Gujarat. Each mirror is individually set and secured — adding luminous movement to every silhouette.</p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div>
+            <h4>Mochi Work</h4>
+            <p>A centuries-old chain-stitch embroidery born from Gujarat's Mochi (cobbler) community in Kutch, using a hooked aari needle to create dense, luminous silk motifs once commissioned by royalty.</p>
+          </div>
+        </div>
+        <div class="craft-item">
+          <div>
+            <h4>Pure Silk Foundations</h4>
+            <p>Every garment begins with the finest base — pure silk, pure cotton, pure heritage. We never compromise on the foundation that holds our craft together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CUSTOMISATION ═══ -->
+<section class="page-section custom-section" id="customisation">
+  <div class="section-inner">
+    <div class="animate-on-scroll">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Make It Yours</h2>
+      <div class="section-rule"></div>
+      <p class="section-intro">
+        Every outfit at Ronak's Couture is fully customisable. Choose your silhouette, select your fabric, and share your vision — our designers bring it to life as a one-of-a-kind creation, crafted exclusively for you.
+      </p>
+    </div>
+
+    <div class="custom-process animate-on-scroll">
+      <div class="process-step">
+        <div class="process-number">01</div>
+        <h4>Choose</h4>
+        <p>Select a base silhouette or share an inspiration. Browse our collections or bring your own vision — we welcome both.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">02</div>
+        <h4>Consult</h4>
+        <p>Speak with our designers on WhatsApp. We discuss fabrics, embroidery preferences, colours, and sizing to shape your perfect outfit.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">03</div>
+        <h4>Create</h4>
+        <p>Our atelier brings your vision to life — from original design concepts to hand-embroidered finishing. Every detail is crafted with intention.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-number">04</div>
+        <h4>Deliver</h4>
+        <p>Your couture piece arrives — finished, fitted, and ready to wear. Across India or internationally, we deliver your heirloom to your doorstep.</p>
+      </div>
+    </div>
+
+    <div class="custom-highlight animate-on-scroll">
+      <div class="custom-highlight-text">
+        <h3>Every Outfit Is Customisable</h3>
+        <p>
+          Whether it's a bridal lehenga from Riwayat or a festive suit from Tarz — nothing is fixed. Fabric, colour, embroidery style, silhouette, and sizing are all tailored to your exact preferences. Your outfit, your way — that's our promise.
+        </p>
+        <a href="#contact" class="custom-cta-btn">Start Your Journey</a>
+      </div>
+      <div class="custom-price">
+        <div class="custom-price-label">Customisation Deposit</div>
+        <div class="custom-price-amount"><span>₹</span>15,000</div>
+        <div class="custom-price-note">To begin your bespoke journey</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="page-section contact-section" id="contact">
+  <div class="section-inner" style="padding-top: 140px; padding-bottom: 140px;">
+    <div class="contact-arch"></div>
+    <div class="contact-inner animate-on-scroll">
+      <div class="contact-ornament">✦ ✦ ✦</div>
+      <h2 class="contact-title">Begin Your Couture Journey</h2>
+      <p class="contact-subtitle">Reach out on WhatsApp — we'd love to craft something extraordinary for you.</p>
+      
+      <a href="https://wa.me/919274700782" target="_blank" class="contact-whatsapp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+      <div style="margin-top: 12px; font-family: 'EB Garamond', serif; font-size: 16px; color: rgba(240,230,208,0.45);">+91 92747 00782</div>
+
+      <div class="contact-info">
+        <a href="https://www.instagram.com/ronakscouture/" target="_blank">@ronakscouture</a><br>
+        Surat, Gujarat, India<br>
+        Serving India · Namibia · Nairobi &amp; beyond
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-brand">Ronak's Couture</div>
+  <div class="footer-tagline">Timeless Indian couture reimagined for the modern muse</div>
+  <div class="footer-links">
+    <a href="#heritage">Heritage</a>
+    <a href="#collections">Collections</a>
+    <a href="#silhouettes">Silhouettes</a>
+    <a href="#craftsmanship">Craftsmanship</a>
+    <a href="#customisation">Customisation</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-legal">© 2026 Ronak's Couture. All rights reserved.</div>
+</footer>
+
+<script>
+// ─── NAV SCROLL EFFECT ───
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// ─── MOBILE NAV TOGGLE ───
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// ─── SCROLL ANIMATIONS ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      // Stagger children slightly
+      entry.target.style.transitionDelay = '0.1s';
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -60px 0px'
+});
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// ─── SMOOTH SCROLL FOR ANCHOR LINKS ───
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const offset = 72;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
